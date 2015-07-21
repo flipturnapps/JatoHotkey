@@ -3,37 +3,35 @@ import java.util.ArrayList;
 import org.jnativehook.keyboard.NativeKeyEvent;
 import org.jnativehook.mouse.NativeMouseEvent;
 
-public class Event extends Hook
+public class Event
 {
-	private ArrayList<Input> inputs = new ArrayList<Input>();
+	private ArrayList<Input> inputs;
+	private InputKeeperHook hook;
 	private boolean didTrigger;
 
-	public Event(ArrayList<Input> inputs) 
+	
+	public Event(InputKeeperHook hook)
 	{
 		super();
-		this.inputs = inputs;
+		this.inputs = new ArrayList<Input>();
+		this.hook = hook;
 	}
-	public Event()
+	public Input addTo(Input input)
 	{
-		super();
-		inputs = new ArrayList<Input>();
+		int index = this.getInputs().indexOf(input);
+		if(index >= 0)
+			return this.getInputs().get(index);
+		Input nInput = hook.addTo(input);
+		this.getInputs().add(nInput);
+		return nInput;
 	}
-	public ArrayList<Input> getInputs() 
+	private ArrayList<Input> getInputs() 
 	{
 		return inputs;
 	}
-	public void setInputs(ArrayList<Input> inputs) 
+	private void setInputs(ArrayList<Input> inputs) 
 	{
 		this.inputs = inputs;
-	}
-	public void runModifications(int id, boolean isKey, boolean isMouse, boolean setTo)
-	{
-		for(int i = 0; i < this.getInputs().size(); i++)
-		{
-			Input input = this.getInputs().get(i);
-			if((input.isKey() && isKey) || (input.isMouse() && isMouse))
-				input.modifyDown(id, setTo);
-		}
 	}
 
 	public boolean isTriggered()
@@ -61,30 +59,7 @@ public class Event extends Hook
 		}
 		return false;
 	}	
-	@Override
-	public void nativeKeyPressed(NativeKeyEvent e)
-	{
-		this.runModifications(e.getID(), true, false, true);
-	}
-
-	@Override
-	public void nativeKeyReleased(NativeKeyEvent e) 
-	{
-		this.runModifications(e.getID(), true, false, false);
-	}
-
-	@Override
-	public void nativeMousePressed(NativeMouseEvent e) 
-	{
-		this.runModifications(e.getButton(), false, true, true);
-	}
-
-	@Override
-	public void nativeMouseReleased(NativeMouseEvent e) 
-	{
-		this.runModifications(e.getButton(), false, true, false);
-	}
-	@Override
+	
 	public String toString() 
 	{
 		return makeParseable();
@@ -93,15 +68,6 @@ public class Event extends Hook
 				+ ", shouldTriggerAction()=" + shouldTriggerAction() + "]";
 
 		 */
-	}
-	public boolean alreadyHasInput(Input input)
-	{
-		for(int i = 0; i < this.getInputs().size(); i++)
-		{
-			if(this.getInputs().get(i).equals(input))
-				return true;			
-		}
-		return false;
 	}
 	public String makeParseable()
 	{

@@ -7,6 +7,7 @@ public class EventGenHook extends Hook
 {
 	private ArrayList<Input> inputs;
 	private ArrayList<Event> events;
+	private InputKeeperHook ikh;
 	public EventGenHook()
 	{
 		inputs = new ArrayList<Input>();
@@ -27,12 +28,14 @@ public class EventGenHook extends Hook
 		{
 			if(!inputs.isEmpty())
 			{
-				Event event = new Event();
+				if(ikh == null)
+					ikh = new InputKeeperHook();
+				Event event = new Event(ikh);
 				for(int i = 0; i <inputs.size(); i++)
 				{
 					Input input = inputs.get(i);
-					if(!event.alreadyHasInput(input))
-						event.getInputs().add(input);
+					event.addTo(input);
+					
 				}
 				events.add(event);
 				inputs.clear();
