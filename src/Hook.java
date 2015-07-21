@@ -24,8 +24,7 @@ public class Hook implements NativeKeyListener, NativeMouseListener
 			GlobalScreen.registerNativeHook();
 			GlobalScreen.addNativeKeyListener(this);
 			GlobalScreen.addNativeMouseListener(this);
-		} catch (NativeHookException e) 
-		{
+		} catch (NativeHookException e) {
 			System.out.println("Couldn't register hook!");
 		}
 	}
@@ -51,8 +50,7 @@ public class Hook implements NativeKeyListener, NativeMouseListener
 	{
 		try {
 			GlobalScreen.unregisterNativeHook();
-		}
-		catch (NativeHookException ex) {
+		} catch (NativeHookException ex) {
 			ex.printStackTrace();
 		}
 		System.runFinalization();

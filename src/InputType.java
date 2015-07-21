@@ -1,5 +1,5 @@
 
 public enum InputType 
 {
-KEY,MOUSECLICK
+    KEY, MOUSECLICK
 }

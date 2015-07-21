@@ -4,7 +4,6 @@ public class Input
 	private int id;
 	private InputType type;
 	public Input(InputType type, int id) {
-		super();
 		this.id = id;
 		this.type = type;
 	}
