@@ -35,7 +35,7 @@ public class Event extends Hook
 				input.modifyDown(id, setTo);
 		}
 	}
-	
+
 	public boolean isTriggered()
 	{
 		if(this.getInputs().isEmpty())
@@ -85,8 +85,32 @@ public class Event extends Hook
 		this.runModifications(e.getButton(), false, true, false);
 	}
 	@Override
-	public String toString() {
+	public String toString() 
+	{
+		return makeParseable();
+		/*
 		return "Event [inputs=" + inputs + ", didTrigger=" + didTrigger + ", isTriggered()=" + isTriggered()
 				+ ", shouldTriggerAction()=" + shouldTriggerAction() + "]";
+
+		 */
+	}
+	public boolean alreadyHasInput(Input input)
+	{
+		for(int i = 0; i < this.getInputs().size(); i++)
+		{
+			if(this.getInputs().get(i).equals(input))
+				return true;			
+		}
+		return false;
+	}
+	public String makeParseable()
+	{
+		String line = "";
+		for(int i = 0; i < this.getInputs().size(); i++)
+		{
+			line += this.getInputs().get(i).getAsParsableString() + "&";
+		}
+		line = line.substring(0,line.length()-1);
+		return line;
 	}
 }

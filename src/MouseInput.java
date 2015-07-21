@@ -6,10 +6,6 @@ public class MouseInput extends Input
 		super(id);
 
 	}
-	public MouseInput(int id, String name) 
-	{
-		super(id,name);
-	}
 	@Override
 	public String getTypeName() 
 	{
@@ -26,6 +22,11 @@ public class MouseInput extends Input
 	public boolean isMouse() 
 	{
 		return true;
+	}
+	@Override
+	public String getAsParsableString()
+	{
+		return "Mouse"+this.getId();
 	}
 
 }

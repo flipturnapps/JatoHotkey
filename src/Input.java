@@ -3,17 +3,11 @@ public abstract class Input
 {
 	private boolean down;
 	private int id;
-	private String name;
 	public Input(int id) 
 	{
 		this.id = id;
-		this.name = "id"+id;
 	}
-	public Input(int id, String name) 
-	{
-		this.id = id;
-		this.setName(name);
-	}
+	
 	public int getId() 
 	{
 		return id;
@@ -37,15 +31,25 @@ public abstract class Input
 		if(id == compId)
 			this.setDown(setTo);
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
+	public abstract String getAsParsableString();	
+	
 	@Override
 	public String toString() {
-		return "Input [down=" + down + ", id=" + id + ", name=" + name + "]";
+		return "Input [down=" + down + ", id=" + id + "]";
 	}
-	
+	public boolean equals(Object o)
+	{
+		if(!(o instanceof Input))
+			return false;
+		Input input = (Input) o;
+		if(input.getId() != this.getId())
+			return false;
+		if(input.isKey() != this.isKey())
+			return false;
+		if(input.isMouse() != this.isMouse())
+			return false;
+		return true;
+	}
+
 }

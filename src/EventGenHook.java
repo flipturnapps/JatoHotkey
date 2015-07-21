@@ -16,22 +16,24 @@ public class EventGenHook extends Hook
 	public void nativeKeyPressed(NativeKeyEvent e)
 	{
 		
+
 		if(e.getKeyCode() != e.VC_ENTER)
 		{
-			Input input = new KeyInput(e.getKeyCode(),e.getKeyText(e.getKeyCode()));
+			Input input = new KeyInput(e.getKeyCode());
 			inputs.add(input);
 			System.out.println("added keyinput " + input);
 		}
 		else
 		{
-			ArrayList<Input> nInputs = new ArrayList<Input>();
-			for(int i= 0; i < inputs.size(); i++)
+			if(!inputs.isEmpty())
 			{
-				nInputs.add(inputs.get(i));
-			}
-			if(!nInputs.isEmpty())
-			{
-				Event event = new Event(nInputs);
+				Event event = new Event();
+				for(int i = 0; i <inputs.size(); i++)
+				{
+					Input input = inputs.get(i);
+					if(!event.alreadyHasInput(input))
+						event.getInputs().add(input);
+				}
 				events.add(event);
 				inputs.clear();
 				System.out.println("Added event " + event);
@@ -49,7 +51,7 @@ public class EventGenHook extends Hook
 	@Override
 	public void nativeMousePressed(NativeMouseEvent e) 
 	{
-		Input input = new MouseInput(e.getButton(),"mbutton" + e.getButton());
+		Input input = new MouseInput(e.getButton());
 		inputs.add(input);
 		System.out.println("added mouseinput " + input);
 

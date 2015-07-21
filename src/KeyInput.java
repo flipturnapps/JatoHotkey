@@ -1,14 +1,10 @@
+import org.jnativehook.keyboard.NativeKeyEvent;
 
 public class KeyInput extends Input 
 {
 	public KeyInput(int id)
 	{
 		super(id);
-
-	}
-	public KeyInput(int id, String name) 
-	{
-		super(id,name);
 	}
 
 	@Override
@@ -27,6 +23,12 @@ public class KeyInput extends Input
 	public boolean isMouse() 
 	{
 		return false;
+	}
+
+	@Override
+	public String getAsParsableString() 
+	{
+		return NativeKeyEvent.getKeyText(this.getId()).toLowerCase().replace("left ", "").replace("right ", "");
 	}
 
 }
