@@ -2,33 +2,20 @@ import org.jnativehook.keyboard.NativeKeyEvent;
 
 public class KeyInput extends Input 
 {
-	public KeyInput(int id)
-	{
-		super(id);
-	}
+	public KeyInput(int id) { super(id); }
 
 	@Override
-	public String getTypeName() 
-	{
-		return this.getClass().getName();
-	}
+	public String getTypeName() { return class.getName(); }
 
 	@Override
-	public boolean isKey()
-	{
-		return true;
-	}
+	public boolean isKey() { return true; }
 
 	@Override
-	public boolean isMouse() 
-	{
-		return false;
-	}
+	public boolean isMouse() { return false; }
 
 	@Override
-	public String getAsParsableString() 
-	{
-		return NativeKeyEvent.getKeyText(this.getId()).toLowerCase().replace("left ", "").replace("right ", "");
-	}
-
+	public String getAsParsableString() {
+            return NativeKeyEvent.getKeyText(this.getId()).toLowerCase()
+                .replace("left ", "").replace("right ", "");
+        }
 }

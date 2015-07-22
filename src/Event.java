@@ -8,11 +8,9 @@ public class Event
 	private ArrayList<Input> inputs;
 	private InputKeeperHook hook;
 	private boolean didTrigger;
-
 	
 	public Event(InputKeeperHook hook)
 	{
-		super();
 		this.inputs = new ArrayList<Input>();
 		this.hook = hook;
 	}
@@ -25,14 +23,9 @@ public class Event
 		this.getInputs().add(nInput);
 		return nInput;
 	}
-	private ArrayList<Input> getInputs() 
-	{
-		return inputs;
-	}
-	private void setInputs(ArrayList<Input> inputs) 
-	{
-		this.inputs = inputs;
-	}
+
+	private ArrayList<Input> getInputs() { return inputs; }
+	private void setInputs(ArrayList<Input> inputs) { this.inputs = inputs; }
 
 	public boolean isTriggered()
 	{
@@ -41,7 +34,7 @@ public class Event
 		for(int i = 0; i < this.getInputs().size(); i++)
 		{
 			if(!(this.getInputs().get(i).isDown()))
-				return false;
+n				return false;
 		}
 		return true;
 	}
@@ -60,15 +53,12 @@ public class Event
 		return false;
 	}	
 	
-	public String toString() 
-	{
-		return makeParseable();
+	public String toString() { return makeParseable(); }
 		/*
 		return "Event [inputs=" + inputs + ", didTrigger=" + didTrigger + ", isTriggered()=" + isTriggered()
 				+ ", shouldTriggerAction()=" + shouldTriggerAction() + "]";
 
 		 */
-	}
 	public String makeParseable()
 	{
 		String line = "";

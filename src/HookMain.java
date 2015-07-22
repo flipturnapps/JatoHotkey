@@ -6,8 +6,6 @@ import org.jnativehook.NativeHookException;
 
 public class HookMain
 {
-
-	
 	public static void main(String[] args)
 	{
 		Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
@@ -27,15 +25,15 @@ public class HookMain
 				Thread.sleep(100);
 				
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				// TODO Auto-g
 				e.printStackTrace();
 			}
 		System.out.println("events: " + hook.getEvents());
 		exit();
 	}
+
 	public static void exit() 
 	{
-		
 		try {
 			GlobalScreen.unregisterNativeHook();
 		} catch (NativeHookException ex) {
@@ -44,5 +42,4 @@ public class HookMain
 		System.runFinalization();
 		System.exit(0);
 	}
-
 }

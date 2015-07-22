@@ -10,6 +10,7 @@ public abstract class Hook implements NativeKeyListener, NativeMouseListener
 	{
 		
 	}
+
 	@Override
 	public void nativeKeyTyped(NativeKeyEvent e)
 	{
