@@ -7,8 +7,14 @@ public class InputKeeperHook extends Hook
 {
 	private ArrayList<Input> inputs = new ArrayList<Input>();
 
-	public InputKeeperHook(ArrayList<Input> inputs) { this.inputs = inputs; }
-	public InputKeeperHook()                        { InputKeeperHook(new ArrayList<Input>()); }
+	public InputKeeperHook(ArrayList<Input> inputs) 
+	{
+		this.inputs = inputs;
+	}
+	public InputKeeperHook()                       
+	{ 
+		this(new ArrayList<Input>()); 
+	}
 
 	public ArrayList<Input> getInputs() { return inputs; }
 	public void setInputs(ArrayList<Input> inputs) { this.inputs = inputs; }
@@ -22,7 +28,7 @@ public class InputKeeperHook extends Hook
 				input.modifyDown(id, setTo);
 		}
 	}
-	
+
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent e) { this.runModifications(e.getID(), true, false, true); }
 

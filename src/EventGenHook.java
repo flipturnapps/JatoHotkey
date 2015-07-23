@@ -17,7 +17,7 @@ public class EventGenHook extends Hook
 	@Override
 	public void nativeKeyPressed(NativeKeyEvent e)
 	{
-		if(e.getKeyCode() != e.VC_ENTER)
+		if(e.getKeyCode() != NativeKeyEvent.VC_ENTER)
 		{
 			Input input = new KeyInput(e.getKeyCode());
 			inputs.add(input);

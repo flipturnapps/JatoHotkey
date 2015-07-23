@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-import org.jnativehook.keyboard.NativeKeyEvent;
-import org.jnativehook.mouse.NativeMouseEvent;
-
 public class Event
 {
 	private ArrayList<Input> inputs;
@@ -34,7 +31,7 @@ public class Event
 		for(int i = 0; i < this.getInputs().size(); i++)
 		{
 			if(!(this.getInputs().get(i).isDown()))
-n				return false;
+				return false;
 		}
 		return true;
 	}
@@ -53,6 +50,7 @@ n				return false;
 		return false;
 	}	
 	
+	@Override
 	public String toString() { return makeParseable(); }
 		/*
 		return "Event [inputs=" + inputs + ", didTrigger=" + didTrigger + ", isTriggered()=" + isTriggered()
