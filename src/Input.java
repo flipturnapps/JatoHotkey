@@ -3,10 +3,7 @@ public abstract class Input
 {
 	private boolean down;
 	private int id;
-	public Input(int id)
-	{
-		this.id = id;
-		}
+	public Input(int id) { this.id = id; }
 
 	public int getId() { return id; }
 	public void setId(int id) { this.id = id; }
