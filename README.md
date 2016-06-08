@@ -10,4 +10,6 @@ This redesign consists of a few basic classes/interfaces:
   * Should include tests such as IsInputDownTest, OrTest and AndTest
 * **Event** a generic class that when combined with a test of some sort and an **Action** (user-defined) will trigger that action when the Test becomes true
 
+This project is dependent on the [JNativeHook library](https://github.com/kwhat/jnativehook).
+
  
