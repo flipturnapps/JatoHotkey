@@ -1,3 +1,4 @@
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -28,11 +29,11 @@ public class TestMain
 		}
 		
 		
-		System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_CONTROL_L));
-		System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_CONTROL_R));
-		System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.ALT_MASK));
-		System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_ALT_L));
-		System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_ALT_R));
+		//System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_CONTROL_L));
+	//	System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_CONTROL_R));
+		//System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.ALT_MASK));
+		//System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_ALT_L));
+		//System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_ALT_R));
 		
 		BasicTest lc = new BasicTest(new KeyInput(Key.constructKey("Left Control", listener)));
 		BasicTest rc = new BasicTest(new KeyInput(Key.constructKey("Right Control", listener)));
@@ -41,12 +42,18 @@ public class TestMain
 		BasicTest lalt = new BasicTest(new KeyInput(Key.constructKey("Right Alt", listener)));
 		OrTest alts = new OrTest(ralt,lalt);
 		
-		AndTest combined = new AndTest(controls,alts);
+		AndTest mods = new AndTest(controls,alts);
 		
+		BasicTest k = new BasicTest(new KeyInput(Key.constructKey("k", listener)));
+		
+		AndTest combined = new AndTest(mods,k);
 		while(true)
 		{
 			if(combined.isPassing())
+			{
 				System.out.println("true");
+				Toolkit.getDefaultToolkit().beep();
+			}
 			else
 				System.out.println("false");
 			try {
