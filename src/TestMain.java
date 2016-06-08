@@ -29,12 +29,6 @@ public class TestMain
 		}
 		
 		
-		//System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_CONTROL_L));
-	//	System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_CONTROL_R));
-		//System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.ALT_MASK));
-		//System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_ALT_L));
-		//System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_ALT_R));
-		
 		BasicTest lc = new BasicTest(new KeyInput(Key.constructKey("Left Control", listener)));
 		BasicTest rc = new BasicTest(new KeyInput(Key.constructKey("Right Control", listener)));
 		OrTest controls = new OrTest(lc,rc);
@@ -44,18 +38,17 @@ public class TestMain
 		
 		AndTest mods = new AndTest(controls,alts);
 		
-		BasicTest k = new BasicTest(new KeyInput(Key.constructKey("k", listener)));
+		BasicTest k = new BasicTest(new KeyInput(Key.constructKey("Escape", listener)));
 		
 		AndTest combined = new AndTest(mods,k);
+		
+		ChromeAction action = new ChromeAction();
+		Event mainEvent = new Event(combined,action);
+		
+		
 		while(true)
 		{
-			if(combined.isPassing())
-			{
-				System.out.println("true");
-				Toolkit.getDefaultToolkit().beep();
-			}
-			else
-				System.out.println("false");
+			mainEvent.testAndDo();
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
