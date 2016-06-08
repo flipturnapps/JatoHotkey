@@ -13,7 +13,7 @@ public class Key
 	{
 		int testId = 0;
 		String name = null;
-		while(name == null && testId < 1000)
+		while(name == null && testId < 10000)
 		{
 			testId++;
 			String testName = NativeKeyEvent.getKeyText(testId);
@@ -48,6 +48,7 @@ public class Key
 	private Key (int id)
 	{
 		name = NativeKeyEvent.getKeyText(id);
+		code = id;
 	}
 	
 	public int getCode() 
@@ -68,6 +69,11 @@ public class Key
 	public boolean isDown() 
 	{
 		return down;
+	}
+
+	@Override
+	public String toString() {
+		return "Key [code=" + code + ", name=" + name + ", down=" + down + "]";
 	}	
 	
 }

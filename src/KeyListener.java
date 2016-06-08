@@ -16,6 +16,7 @@ public class KeyListener implements NativeKeyListener
 		if(!shouldCheckEvent(keyCode))
 		{
 			return;
+			
 		}
 		
 		for (int i = 0; i < registeredCodes.length; i++) 
@@ -29,8 +30,10 @@ public class KeyListener implements NativeKeyListener
 
 	private boolean shouldCheckEvent(int code)
 	{
-		if(!locked && code > registeredCodes[0] && code < registeredCodes[registeredCodes.length -1])
+		
+		if(!locked && code >= registeredCodes[0] && code <= registeredCodes[registeredCodes.length -1])
 		{
+			
 			return true;
 		}
 		return false;
@@ -91,7 +94,6 @@ public class KeyListener implements NativeKeyListener
 			keysCopy.remove(index);
 			idsCount++;
 		}
-		
 		
 		locked = false;
 	}
