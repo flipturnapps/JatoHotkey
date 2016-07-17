@@ -31,6 +31,7 @@ public class TestMain
 		}
 		
 		
+
 		//System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_CONTROL_L));
 	//	System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.VC_CONTROL_R));
 		//System.out.println(NativeKeyEvent.getKeyText(NativeKeyEvent.ALT_MASK));
@@ -39,6 +40,7 @@ public class TestMain
 		
 		BasicTest lc = new BasicTest(new KeyInput(Key.constructKey("Left Control", kListener)));
 		BasicTest rc = new BasicTest(new KeyInput(Key.constructKey("Right Control", kListener)));
+
 		OrTest controls = new OrTest(lc,rc);
 		
 		BasicTest ralt = new BasicTest(new KeyInput(Key.constructKey("Left Alt", kListener)));
@@ -54,6 +56,7 @@ public class TestMain
 		
 		BasicTest mButton = new BasicTest(new MouseInput(MouseButton.constructMB(1, mListener)));
 		
+
 		
 		while(true)
 		{
@@ -68,6 +71,7 @@ public class TestMain
 			}
 			else
 				System.out.println("false");
+
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
