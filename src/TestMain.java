@@ -38,15 +38,16 @@ public class TestMain
 		BasicTest lc = new BasicTest(new KeyInput(Key.constructKey("Left Control", listener)));
 		BasicTest rc = new BasicTest(new KeyInput(Key.constructKey("Right Control", listener)));
 		OrTest controls = new OrTest(lc,rc);
+		
 		BasicTest ralt = new BasicTest(new KeyInput(Key.constructKey("Left Alt", listener)));
 		BasicTest lalt = new BasicTest(new KeyInput(Key.constructKey("Right Alt", listener)));
 		OrTest alts = new OrTest(ralt,lalt);
 		
-		AndTest mods = new AndTest(controls,alts);
+		AndTest ctrl_and_alt = new AndTest(controls,alts);
 		
-		BasicTest k = new BasicTest(new KeyInput(Key.constructKey("k", listener)));
+		BasicTest j = new BasicTest(new KeyInput(Key.constructKey("j", listener)));
 		
-		AndTest combined = new AndTest(mods,k);
+		AndTest combined = new AndTest(ctrl_and_alt,j);
 		while(true)
 		{
 			if(combined.isPassing())
