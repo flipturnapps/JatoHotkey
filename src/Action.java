@@ -1,5 +1,20 @@
 
-public interface Action 
+public abstract class Action 
 {
-	public void doAction();
+	private boolean ranAction;
+	
+	
+	public void spotlight()
+	{
+		if(getTest().isPassing() && !ranAction)
+		{
+			ranAction = true;
+			runAction();
+			return;
+		}
+		if(!getTest().isPassing())
+			ranAction = false;
+	}
+	protected abstract Test getTest();
+	protected abstract void runAction();
 }
