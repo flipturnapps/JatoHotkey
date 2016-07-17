@@ -30,20 +30,20 @@ public class MouseButton
 	*/
 	public static MouseButton constructMB(int givenCode, MouseListener list) 
 	{
-		ArrayList<MouseButton> keys = list.getRegisteredButtons();
-		if(keys == null)
-			keys = new ArrayList<MouseButton>();
-		for(int i = 0; i < keys.size(); i++)
+		ArrayList<MouseButton> muttons = list.getRegisteredButtons();
+		if(muttons == null)
+			muttons = new ArrayList<MouseButton>();
+		for(int i = 0; i < muttons.size(); i++)
 		{
-			if(keys.get(i).code == givenCode)
+			if(muttons.get(i).code == givenCode)
 			{
-				return keys.get(i);
+				return muttons.get(i);
 			}
 		}
-		MouseButton newKey = new MouseButton(givenCode);
-		keys.add(newKey);
+		MouseButton newButton = new MouseButton(givenCode);
+		muttons.add(newButton);
 		list.regenIdList();
-		return newKey;
+		return newButton;
 	}
 	private MouseButton (int id)
 	{

@@ -10,10 +10,7 @@ public class MouseListener implements NativeMouseListener
 	private ArrayList<MouseButton> registeredButtons = new ArrayList<MouseButton>();
 	private int[] registeredCodes;
 	private boolean locked;
-
 	
-	
-
 	private boolean shouldCheckEvent(int code)
 	{
 		
@@ -53,7 +50,7 @@ public class MouseListener implements NativeMouseListener
 			}
 			registeredButtons.add(buttonsCopy.get(index));
 			registeredCodes[idsCount] = buttonsCopy.get(index).getCode();
-			registeredButtons.remove(index);
+			buttonsCopy.remove(index);
 			idsCount++;
 		}
 		
@@ -62,6 +59,13 @@ public class MouseListener implements NativeMouseListener
 
 	@Override
 	public void nativeMouseClicked(NativeMouseEvent ev) 
+	{
+		
+		
+	}
+
+	@Override
+	public void nativeMousePressed(NativeMouseEvent ev)
 	{
 		int buttonCode = ev.getButton();
 		if(!shouldCheckEvent(buttonCode))
@@ -81,7 +85,7 @@ public class MouseListener implements NativeMouseListener
 	}
 
 	@Override
-	public void nativeMousePressed(NativeMouseEvent ev)
+	public void nativeMouseReleased(NativeMouseEvent ev) 
 	{
 		int buttonCode = ev.getButton();
 		if(!shouldCheckEvent(buttonCode))
@@ -97,13 +101,6 @@ public class MouseListener implements NativeMouseListener
 				registeredButtons.get(i).setDown(false);
 			}
 		}
-		
-	}
-
-	@Override
-	public void nativeMouseReleased(NativeMouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
