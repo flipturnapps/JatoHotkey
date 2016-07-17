@@ -1,23 +1,20 @@
 
 public abstract class Action 
 {
-	private Test test;
 	private boolean ranAction;
 	
 	
 	public void spotlight()
 	{
-		if(test.isPassing() && !ranAction)
+		if(getTest().isPassing() && !ranAction)
 		{
 			ranAction = true;
 			runAction();
 			return;
 		}
-		if(!test.isPassing())
+		if(!getTest().isPassing())
 			ranAction = false;
 	}
-	protected void runAction()
-	{
-		
-	}
+	protected abstract Test getTest();
+	protected abstract void runAction();
 }
