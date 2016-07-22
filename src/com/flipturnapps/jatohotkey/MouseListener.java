@@ -1,3 +1,4 @@
+package com.flipturnapps.jatohotkey;
 import java.util.ArrayList;
 
 import org.jnativehook.keyboard.NativeKeyEvent;

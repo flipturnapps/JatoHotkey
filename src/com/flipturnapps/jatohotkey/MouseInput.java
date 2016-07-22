@@ -1,3 +1,4 @@
+package com.flipturnapps.jatohotkey;
 
 public class MouseInput implements Input 
 {

@@ -1,3 +1,4 @@
+package com.flipturnapps.jatohotkey;
 import java.util.ArrayList;
 
 public class ActionRunner implements Runnable
