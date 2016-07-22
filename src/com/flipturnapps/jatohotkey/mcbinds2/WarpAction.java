@@ -7,6 +7,7 @@ import com.flipturnapps.jatohotkey.lib.Key;
 import com.flipturnapps.jatohotkey.lib.KeyInput;
 import com.flipturnapps.jatohotkey.lib.KeyListener;
 import com.flipturnapps.jatohotkey.lib.MouseListener;
+import com.flipturnapps.jatohotkey.lib.NotTest;
 import com.flipturnapps.jatohotkey.lib.OrTest;
 import com.flipturnapps.jatohotkey.lib.Test;
 import com.flipturnapps.kevinLibrary.helper.FlushWriter;
@@ -34,7 +35,14 @@ public class WarpAction extends McAction
 		OrTest controlTest = new OrTest(lc,rc);
 		
 		AndTest finalTest = new AndTest(controlTest,numKeyTest);
-		return finalTest;
+		
+		BasicTest ralt = new BasicTest(new KeyInput(Key.constructKey("Left Alt", this.getKeyListener())));
+		BasicTest lalt = new BasicTest(new KeyInput(Key.constructKey("Right Alt", this.getKeyListener())));
+		OrTest alts = new OrTest(ralt,lalt);
+		
+		AndTest finalfinalTest = new AndTest(finalTest, new NotTest(alts));
+		
+		return finalfinalTest;
 	}
 
 	@Override
