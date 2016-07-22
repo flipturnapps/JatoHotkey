@@ -3,7 +3,14 @@ package com.flipturnapps.jatohotkey.lib;
 public abstract class Action 
 {
 	private boolean ranAction;
+	private KeyListener keyListener;
+	private MouseListener mouseListener;
 	
+	public Action (KeyListener kl, MouseListener ml)
+	{
+		this.setKeyListener(kl);
+		this.setMouseListener(ml);
+	}
 	
 	public void spotlight()
 	{
@@ -18,4 +25,16 @@ public abstract class Action
 	}
 	protected abstract Test getTest();
 	protected abstract void runAction();
+	public KeyListener getKeyListener() {
+		return keyListener;
+	}
+	private void setKeyListener(KeyListener keyListener) {
+		this.keyListener = keyListener;
+	}
+	public MouseListener getMouseListener() {
+		return mouseListener;
+	}
+	private void setMouseListener(MouseListener mouseListener) {
+		this.mouseListener = mouseListener;
+	}
 }
