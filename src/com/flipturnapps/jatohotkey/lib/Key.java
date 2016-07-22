@@ -1,15 +1,16 @@
+package com.flipturnapps.jatohotkey.lib;
 import java.util.ArrayList;
 
 import org.jnativehook.keyboard.NativeKeyEvent;
 
-public class MouseButton
+public class Key
 {
 	
 	private int code;
-	//private String name;
+	private String name;
 	private boolean down;
-	/*
-	public static MouseButton constructMB(String givenName, MouseListener list)
+	
+	public static Key constructKey(String givenName, KeyListener list)
 	{
 		int testId = 0;
 		String name = null;
@@ -25,29 +26,29 @@ public class MouseButton
 			System.out.println("Key init failed for " + givenName );
 			return null;
 		}
-		return constructMB(testId,list);
+		return constructKey(testId,list);
 	}
-	*/
-	public static MouseButton constructMB(int givenCode, MouseListener list) 
+	
+	private static Key constructKey(int givenCode, KeyListener list) 
 	{
-		ArrayList<MouseButton> muttons = list.getRegisteredButtons();
-		if(muttons == null)
-			muttons = new ArrayList<MouseButton>();
-		for(int i = 0; i < muttons.size(); i++)
+		ArrayList<Key> keys = list.getRegisteredKeys();
+		if(keys == null)
+			keys = new ArrayList<Key>();
+		for(int i = 0; i < keys.size(); i++)
 		{
-			if(muttons.get(i).code == givenCode)
+			if(keys.get(i).code == givenCode)
 			{
-				return muttons.get(i);
+				return keys.get(i);
 			}
 		}
-		MouseButton newButton = new MouseButton(givenCode);
-		muttons.add(newButton);
+		Key newKey = new Key(givenCode);
+		keys.add(newKey);
 		list.regenIdList();
-		return newButton;
+		return newKey;
 	}
-	private MouseButton (int id)
+	private Key (int id)
 	{
-		//name = NativeKeyEvent.getKeyText(id);
+		name = NativeKeyEvent.getKeyText(id);
 		code = id;
 	}
 	
@@ -55,12 +56,12 @@ public class MouseButton
 	{
 		return code;
 	}
-/*
+
 	public String getName() 
 	{
 		return name;
 	}
-*/
+
 	public void setDown(boolean b) 
 	{
 		down = b;		
@@ -73,7 +74,7 @@ public class MouseButton
 
 	@Override
 	public String toString() {
-		return "MB [code=" + code +  ", down=" + down + "]";
+		return "Key [code=" + code + ", name=" + name + ", down=" + down + "]";
 	}	
 	
 }

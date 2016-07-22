@@ -1,3 +1,4 @@
+package com.flipturnapps.jatohotkey.lib;
 import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.LogManager;

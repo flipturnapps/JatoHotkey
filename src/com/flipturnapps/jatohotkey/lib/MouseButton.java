@@ -1,15 +1,16 @@
+package com.flipturnapps.jatohotkey.lib;
 import java.util.ArrayList;
 
 import org.jnativehook.keyboard.NativeKeyEvent;
 
-public class Key
+public class MouseButton
 {
 	
 	private int code;
-	private String name;
+	//private String name;
 	private boolean down;
-	
-	public static Key constructKey(String givenName, KeyListener list)
+	/*
+	public static MouseButton constructMB(String givenName, MouseListener list)
 	{
 		int testId = 0;
 		String name = null;
@@ -25,29 +26,29 @@ public class Key
 			System.out.println("Key init failed for " + givenName );
 			return null;
 		}
-		return constructKey(testId,list);
+		return constructMB(testId,list);
 	}
-	
-	private static Key constructKey(int givenCode, KeyListener list) 
+	*/
+	public static MouseButton constructMB(int givenCode, MouseListener list) 
 	{
-		ArrayList<Key> keys = list.getRegisteredKeys();
-		if(keys == null)
-			keys = new ArrayList<Key>();
-		for(int i = 0; i < keys.size(); i++)
+		ArrayList<MouseButton> muttons = list.getRegisteredButtons();
+		if(muttons == null)
+			muttons = new ArrayList<MouseButton>();
+		for(int i = 0; i < muttons.size(); i++)
 		{
-			if(keys.get(i).code == givenCode)
+			if(muttons.get(i).code == givenCode)
 			{
-				return keys.get(i);
+				return muttons.get(i);
 			}
 		}
-		Key newKey = new Key(givenCode);
-		keys.add(newKey);
+		MouseButton newButton = new MouseButton(givenCode);
+		muttons.add(newButton);
 		list.regenIdList();
-		return newKey;
+		return newButton;
 	}
-	private Key (int id)
+	private MouseButton (int id)
 	{
-		name = NativeKeyEvent.getKeyText(id);
+		//name = NativeKeyEvent.getKeyText(id);
 		code = id;
 	}
 	
@@ -55,12 +56,12 @@ public class Key
 	{
 		return code;
 	}
-
+/*
 	public String getName() 
 	{
 		return name;
 	}
-
+*/
 	public void setDown(boolean b) 
 	{
 		down = b;		
@@ -73,7 +74,7 @@ public class Key
 
 	@Override
 	public String toString() {
-		return "Key [code=" + code + ", name=" + name + ", down=" + down + "]";
+		return "MB [code=" + code +  ", down=" + down + "]";
 	}	
 	
 }

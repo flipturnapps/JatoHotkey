@@ -1,3 +1,4 @@
+package com.flipturnapps.jatohotkey.lib;
 
 public class KeyInput implements Input 
 {

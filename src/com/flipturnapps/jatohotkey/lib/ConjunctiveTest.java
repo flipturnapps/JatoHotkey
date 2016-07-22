@@ -1,3 +1,4 @@
+package com.flipturnapps.jatohotkey.lib;
 
 public abstract class ConjunctiveTest implements Test 
 {
