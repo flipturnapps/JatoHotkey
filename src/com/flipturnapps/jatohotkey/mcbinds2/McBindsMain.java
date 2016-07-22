@@ -42,6 +42,7 @@ public class McBindsMain {
 			File dir = new File(FileHelper.getAppDataDir("flipturnapps", "jatohotkey-mcbinds"));
 			dir.mkdirs();
 			File file = new File(FileHelper.fileInDir(dir,"commands.out"));
+			if(!file.exists())
 			file.createNewFile();
 			fileOutput = new CommandOutput(file);
 		} catch (FileNotFoundException e) {
