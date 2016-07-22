@@ -2,6 +2,7 @@ package com.flipturnapps.jatohotkey.mcbinds2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -38,9 +39,15 @@ public class McBindsMain {
 		}
 		CommandOutput fileOutput = null;
 		try {
-			File file = new File(FileHelper.fileInDir(FileHelper.getAppDataDir("flipturnapps", "jatohotkey-mcbinds"),"commands.out"));
+			File dir = new File(FileHelper.getAppDataDir("flipturnapps", "jatohotkey-mcbinds"));
+			dir.mkdirs();
+			File file = new File(FileHelper.fileInDir(dir,"commands.out"));
+			file.createNewFile();
 			fileOutput = new CommandOutput(file);
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
