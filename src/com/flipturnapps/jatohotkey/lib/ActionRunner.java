@@ -25,7 +25,7 @@ public class ActionRunner implements Runnable
 			}
 			
 			try {
-				Thread.sleep(50);
+				Thread.sleep(0);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
