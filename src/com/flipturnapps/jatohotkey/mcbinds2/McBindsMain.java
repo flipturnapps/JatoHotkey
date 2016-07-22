@@ -62,7 +62,8 @@ public class McBindsMain {
 			runner.getActions().add(swAct);
 			runner.getActions().add(wAct);
 		}
-		
+		runner.getActions().add(new JumpAction(kListener, mListener, fileOutput));
+		runner.getActions().add(new ThruAction(kListener, mListener, fileOutput));
 		runner.startRunning();
 		
 	}
