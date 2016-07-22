@@ -14,11 +14,17 @@ public class MouseListener implements NativeMouseListener
 	
 	private boolean shouldCheckEvent(int code)
 	{
-		
+		try
+		{
 		if(!locked && code >= registeredCodes[0] && code <= registeredCodes[registeredCodes.length -1])
 		{
 			
 			return true;
+		}
+		}
+		catch(RuntimeException ex)
+		{
+			return false;
 		}
 		return false;
 	}
