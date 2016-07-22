@@ -12,6 +12,7 @@ import com.flipturnapps.jatohotkey.lib.Test;
 public class SetWarpAction extends McAction
 {
 	private int num;
+	private AndTest finalTest;
 	
 	public SetWarpAction(KeyListener kl, MouseListener ml, int num, CommandOutput output) 
 	{
@@ -22,6 +23,8 @@ public class SetWarpAction extends McAction
 	@Override
 	protected Test getTest() 
 	{
+		if(finalTest== null)
+		{
 		Key numKey = Key.constructKey(num+"", this.getKeyListener());
 		KeyInput numKeyInput = new KeyInput(numKey);
 		BasicTest numKeyTest = new BasicTest(numKeyInput);
@@ -39,7 +42,9 @@ public class SetWarpAction extends McAction
 		
 		AndTest ctrl_and_alt = new AndTest(controlTest,alts);
 		
-		AndTest finalTest = new AndTest(ctrl_and_alt,numKeyTest);
+		finalTest = new AndTest(ctrl_and_alt,numKeyTest);
+		
+		}
 		
 		return finalTest;
 	}

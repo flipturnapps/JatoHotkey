@@ -15,6 +15,7 @@ import com.flipturnapps.kevinLibrary.helper.FlushWriter;
 public class WarpAction extends McAction
 {
 	private int num;
+	private AndTest finalfinalTest;
 	
 	public WarpAction(KeyListener kl, MouseListener ml, int num, CommandOutput output) 
 	{
@@ -25,6 +26,8 @@ public class WarpAction extends McAction
 	@Override
 	protected Test getTest() 
 	{
+		if(finalfinalTest== null)
+		{
 		Key numKey = Key.constructKey(num+"", this.getKeyListener());
 		KeyInput numKeyInput = new KeyInput(numKey);
 		BasicTest numKeyTest = new BasicTest(numKeyInput);
@@ -40,8 +43,8 @@ public class WarpAction extends McAction
 		BasicTest lalt = new BasicTest(new KeyInput(Key.constructKey("Right Alt", this.getKeyListener())));
 		OrTest alts = new OrTest(ralt,lalt);
 		
-		AndTest finalfinalTest = new AndTest(finalTest, new NotTest(alts));
-		
+		 finalfinalTest = new AndTest(finalTest, new NotTest(alts));
+		}
 		return finalfinalTest;
 	}
 
