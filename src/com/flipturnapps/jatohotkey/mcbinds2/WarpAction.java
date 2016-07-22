@@ -1,5 +1,6 @@
 package com.flipturnapps.jatohotkey.mcbinds2;
 
+import com.flipturnapps.jatohotkey.lib.Action;
 import com.flipturnapps.jatohotkey.lib.AndTest;
 import com.flipturnapps.jatohotkey.lib.BasicTest;
 import com.flipturnapps.jatohotkey.lib.Key;
@@ -8,12 +9,13 @@ import com.flipturnapps.jatohotkey.lib.KeyListener;
 import com.flipturnapps.jatohotkey.lib.MouseListener;
 import com.flipturnapps.jatohotkey.lib.OrTest;
 import com.flipturnapps.jatohotkey.lib.Test;
+import com.flipturnapps.kevinLibrary.helper.FlushWriter;
 
-public class SetWarpAction extends McAction
+public class WarpAction extends McAction
 {
 	private int num;
 	
-	public SetWarpAction(KeyListener kl, MouseListener ml, int num, CommandOutput output) 
+	public WarpAction(KeyListener kl, MouseListener ml, int num, CommandOutput output) 
 	{
 		super(kl, ml, output);
 		this.num = num;
@@ -31,23 +33,14 @@ public class SetWarpAction extends McAction
 
 		OrTest controlTest = new OrTest(lc,rc);
 		
-		
-		
-		BasicTest ralt = new BasicTest(new KeyInput(Key.constructKey("Left Alt", this.getKeyListener())));
-		BasicTest lalt = new BasicTest(new KeyInput(Key.constructKey("Right Alt", this.getKeyListener())));
-		OrTest alts = new OrTest(ralt,lalt);
-		
-		AndTest ctrl_and_alt = new AndTest(controlTest,alts);
-		
-		AndTest finalTest = new AndTest(ctrl_and_alt,numKeyTest);
-		
+		AndTest finalTest = new AndTest(controlTest,numKeyTest);
 		return finalTest;
 	}
 
 	@Override
 	protected void runAction() 
 	{
-		this.getOutput().runAsKevlar("setwarp ktemp" + num);
+		this.getOutput().runAsKevlar("warp ktemp" + num);
 	}
 
 }
