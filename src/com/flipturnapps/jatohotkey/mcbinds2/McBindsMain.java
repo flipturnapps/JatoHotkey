@@ -3,6 +3,7 @@ package com.flipturnapps.jatohotkey.mcbinds2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
@@ -16,9 +17,10 @@ import com.flipturnapps.jatohotkey.lib.MouseListener;
 import com.flipturnapps.kevinLibrary.helper.FileHelper;
 import com.flipturnapps.kevinLibrary.helper.FlushWriter;
 
-public class McBindsMain {
+public class McBindsMain 
+{
 
-	public static void main(String[] args) 
+	public static void startTheApp(String username, String ip, int port) 
 	{
 		// Clear previous logging configurations.
 		LogManager.getLogManager().reset();
@@ -44,7 +46,7 @@ public class McBindsMain {
 			File file = new File(FileHelper.fileInDir(dir,"commands.out"));
 			if(!file.exists())
 			file.createNewFile();
-			fileOutput = new CommandOutput(file);
+			fileOutput = new CommandOutput(file, username);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,6 +68,17 @@ public class McBindsMain {
 		runner.getActions().add(new ThruAction(kListener, mListener, fileOutput));
 		runner.startRunning();
 		
+		Spammer spammer = null;
+		try {
+			spammer = new Spammer(ip, port);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		spammer.start();
 	}
 
 }
