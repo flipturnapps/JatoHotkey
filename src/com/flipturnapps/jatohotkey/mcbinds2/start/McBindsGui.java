@@ -1,4 +1,4 @@
-package com.flipturnapps.jatohotkey.mcbinds2;
+package com.flipturnapps.jatohotkey.mcbinds2.start;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

@@ -1,4 +1,4 @@
-package com.flipturnapps.jatohotkey.mcbinds2;
+package com.flipturnapps.jatohotkey.mcbinds2.running;
 
 import java.io.File;
 import java.io.FileNotFoundException;

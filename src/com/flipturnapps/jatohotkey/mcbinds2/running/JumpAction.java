@@ -1,4 +1,4 @@
-package com.flipturnapps.jatohotkey.mcbinds2;
+package com.flipturnapps.jatohotkey.mcbinds2.running;
 
 import com.flipturnapps.jatohotkey.lib.BasicTest;
 import com.flipturnapps.jatohotkey.lib.KeyListener;
@@ -7,11 +7,11 @@ import com.flipturnapps.jatohotkey.lib.MouseInput;
 import com.flipturnapps.jatohotkey.lib.MouseListener;
 import com.flipturnapps.jatohotkey.lib.Test;
 
-public class ThruAction extends McAction {
+public class JumpAction extends McAction {
 
 	private BasicTest test;
 
-	public ThruAction(KeyListener kl, MouseListener ml, CommandOutput output)
+	public JumpAction(KeyListener kl, MouseListener ml, CommandOutput output)
 	{
 		super(kl, ml, output);
 	}
@@ -21,7 +21,7 @@ public class ThruAction extends McAction {
 	{
 		if(test == null)
 		{
-		 test = new BasicTest(new MouseInput(MouseButton.constructMB(5, getMouseListener())));
+		 test = new BasicTest(new MouseInput(MouseButton.constructMB(4, getMouseListener())));
 		}
 		return test;
 	}
@@ -29,7 +29,7 @@ public class ThruAction extends McAction {
 	@Override
 	protected void runAction() 
 	{
-		this.getOutput().runAsKevlar("thru");
+		this.getOutput().runAsKevlar("jump");
 
 	}
 

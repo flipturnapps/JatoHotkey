@@ -1,4 +1,4 @@
-package com.flipturnapps.jatohotkey.mcbinds2;
+package com.flipturnapps.jatohotkey.mcbinds2.running;
 
 import com.flipturnapps.jatohotkey.lib.Action;
 import com.flipturnapps.jatohotkey.lib.AndTest;
