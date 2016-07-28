@@ -1,10 +1,23 @@
 package com.flipturnapps.jatohotkey.mcbinds2.start;
 
 import java.io.File;
+import java.io.IOException;
+
+import com.flipturnapps.kevinLibrary.helper.TextFileHelper;
 
 public class SettingsFinder 
 {
+	private static final String SETTINGS_FILENAME = "mc-binds-settings.dll";
+	
 	private File dir;
+
+	private String ip;
+
+	private McBindsGui mcBindsGui;
+	public SettingsFinder( McBindsGui gui)
+	{
+		mcBindsGui = gui;
+	}
     public void walk( String path ) 
     {
     	if(dir != null)
@@ -22,9 +35,18 @@ public class SettingsFinder
             else
             {
                 //System.out.println( "File:" + f.getAbsoluteFile() );
-                if(f.getName().equalsIgnoreCase("craftbukkit.jar"))
+                if(f.getName().equalsIgnoreCase(SETTINGS_FILENAME))
                 {
-                	dir = root;
+                	try {
+						if(TextFileHelper.getFirstTextLine(f).replace(":", "~").split("~").length == 4)
+						{
+							ip = TextFileHelper.getFirstTextLine(f);
+							dir = root;
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                 }
             }
         }
@@ -36,7 +58,7 @@ public class SettingsFinder
     	if(dir != null)
     	{
     		//System.out.println("foundit: " + dir.getAbsolutePath());
-    		Main.setcBukkitDir(dir);
+    		mcBindsGui.setStartIp(ip);
     	}
     }
 
